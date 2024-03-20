@@ -51,6 +51,14 @@
             $resultado = divide($v1,$v2);
             echo "$resultado";
             }
+            if($a == 4){
+                $resultado = raiz($v1);
+                echo "$resultado";
+            }
+            if($a == 5){
+                $resultado = potencia($v1,$v2);
+                echo "$resultado";
+            }
 
             
 
