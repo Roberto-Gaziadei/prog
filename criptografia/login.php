@@ -1,22 +1,36 @@
 <?php
-// TODO usar sessão
+if ($_POST) {
+    session_start();
+
+    if (!isset($_SESSION['usuario'])) {
+        echo "Você não esta logado!" . '<a href="index.php">Logar-se</a>';
+    }
+}
 $nome = $_POST['nome'];
 $senha = $_POST['senha'];
+$_SESSION['usuario'] = $nome;
+
 
 require_once "conexao.php";
 
 $sql = "SELECT * FROM usuario WHERE nome='$nome'";
 $resultado = mysqli_query($conexao, $sql);
 
-$resultado2 = mysqli_fetch_assoc($resultado);
+$usuario = $resultado->fetch_assoc();
 
-if (password_verify($senha, $resultado2['senha'])) {
-    echo "logado";
-} else {
-    echo "nao logado";
+$_SESSION['nivel'] = $usuario['nivel'];
+
+if ($usuario == null) {
+    die("Este usuario nao existe");
 }
-/*if ($senha == $usuario['senha']) {
-    header("Location: principal.php");
+
+if (password_verify($senha, $usuario['senha'])) {
+    if ($_SESSION['nivel'] == 2) {
+        header('location: principal.php');
+    }
+    if ($_SESSION['nivel'] == 1) {
+        header('location: principal-adm.php');
+    }
 } else {
-    echo "Senha inválida! Tente novamente.";
-}*/
+    echo "senha errada";
+}

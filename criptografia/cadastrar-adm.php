@@ -10,7 +10,13 @@ $hash = password_hash($senha, PASSWORD_ARGON2I);
 password_verify($senha, $hash);
 
 $sql = "INSERT INTO usuario (nome, senha, nivel) VALUES 
-        ('$nome', '$hash', 2)";
+        ('$nome', '$hash', $nivel)";
 $resultado = mysqli_query($conexao, $sql);
+/* $usuarios = $resultado->fetch_assoc();
 
-header("Location: index.php");
+
+if($usuario['nivel'] == 1){
+
+} */
+
+header("Location: principal-adm.php");

@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['usuario'])){
-    die("Você precisa estar logado para acessar esta página" . '<p><a href="index.php">Login</a></p>');
+    die("Você não tem acesso a essa página" . '<p><a href="index.php">Login</a></p>');
 }
 
 ?>
@@ -16,8 +16,8 @@ if(!isset($_SESSION['usuario'])){
 </head>
 
 <body>
-<h1>Olá, <?php echo $_SESSION['usuario']; ?> </h1>
+    <h1>Olá, Adm <?php echo $_SESSION['usuario']; ?> </h1>
+    <a href="form-cadastro-adm.php">Cadastrar usuário</a><br><br>
     <a href="logout.php">Logout</a>
 </body>
-
 </html>
