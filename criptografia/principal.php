@@ -1,11 +1,3 @@
-<?php
-session_start();
-
-if(!isset($_SESSION['usuario'])){
-    die("Você precisa estar logado para acessar esta página" . '<p><a href="index.php">Login</a></p>');
-}
-
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,8 +8,7 @@ if(!isset($_SESSION['usuario'])){
 </head>
 
 <body>
-<h1>Olá, <?php echo $_SESSION['usuario']; ?> </h1>
-    <a href="logout.php">Logout</a>
+    <h1>Você está logado!</h1>
 </body>
 
 </html>
